@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Sidebar from "./components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,22 +21,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-screen flex flex-col bg-white">
-        
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-screen flex flex-col bg-white text-black antialiased">
         <Header />
         
-        {/* flex-grow stretches this container vertically to push footer to the bottom */}
-        {/* max-w-[1050px] locks your content to your target horizontal layout grid */}
-        <main className="w-full max-w-[1050px] mx-auto px-4 sm:px-6 lg:px-8 flex-grow py-8">
-          {children}
-        </main>
-        
+        <div className="flex flex-1 w-full">
+          <Sidebar />
+          <main className="flex-1 p-4 md:p-6">
+            {children}
+          </main>
+        </div>
+
         <Footer />
-        
       </body>
     </html>
   );
